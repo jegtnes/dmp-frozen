@@ -1,0 +1,14 @@
+%container {
+  margin: 0 auto;
+  position: relative;
+  padding: 0 .25em .25em;
+
+  @include mq(46.875em) {
+    padding: 0 1em 1em;
+  }
+}
+
+.container--site {
+  @extend %container;
+  max-width: 80rem;
+}

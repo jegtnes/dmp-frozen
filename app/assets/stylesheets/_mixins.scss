@@ -1,0 +1,12 @@
+@mixin vertical-gradient($start: #000, $stop: $white) {
+  background: ($start);
+  background: -webkit-gradient(linear, left top, left bottom, from($start), to($stop));
+  background: -moz-linear-gradient(center top, $start 0%, $stop 100%);
+  background: -moz-gradient(center top, $start 0%, $stop 100%);
+}
+
+@mixin mq($width) {
+  @media only screen and (min-width:$width) {
+    @content;
+  }
+}

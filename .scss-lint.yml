@@ -1,0 +1,14 @@
+linters:
+  Indentation:
+    enabled: false
+    width: 2
+  Comment:
+    enabled: false
+  HexFormat:
+    enabled: false
+  NameFormat:
+    convention: BEM
+  PropertySortOrder:
+    enabled: false
+  StringQuotes:
+    style: double_quotes

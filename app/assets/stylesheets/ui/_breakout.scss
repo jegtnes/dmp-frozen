@@ -1,0 +1,21 @@
+.breakout {
+  padding: $half-spacing-unit/2;
+  position: relative;
+  text-shadow: #222 0 1px 1px;
+  z-index: 1;
+
+  &:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: -100%;
+    content: "";
+    z-index: -1;
+    @include vertical-gradient(rgba($black, .75), rgba($black, 0))
+  }
+
+  @include mq(46.875em) {
+    padding: $base-spacing-unit;
+  }
+}

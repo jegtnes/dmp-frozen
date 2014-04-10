@@ -1,0 +1,44 @@
+<%= form_tag("/journey", method: "get", class: 'grid form-fields form--search', id: 'journeyForm') do %>
+  <fieldset class="grid__item search-stations">
+    <div class="field">
+      <label for="dep">From:</label>
+      <%= text_field_tag(:dep, '', required: true, class: 'text-input text-input--wide') %>
+      <%= hidden_field_tag 'dep-hidden' %>
+    </div>
+
+    <div class="field">
+      <label for="arr">To:</label>
+      <%= text_field_tag(:arr, '', required: true, class: 'text-input text-input--wide') %>
+      <%= hidden_field_tag 'arr-hidden' %>
+    </div>
+  </fieldset><!--
+
+  --><fieldset class="grid__item search-time">
+    <div class="field">
+      <label for="date">Date:</label>
+      <%= date_field_tag :date, @currentDate, required: true, class: 'text-input text-input--narrow' %>
+    </div>
+
+    <div class="field field--depart">
+      <%= select_tag :dep_arr, options_for_select([['Depart at', 'dep'], ['Arrive at', 'arr']]) %>
+      <%= time_field_tag :time, @currentTime, required: true, class: 'text-input text-input--narrow' %>
+    </div>
+  </fieldset>
+    <%= button_tag "Search", type: :submit, class: "btn btn--beta btn--hollow btn--cta" %>
+<% end %>
+
+<div class="loading-placeholder gamma visuallyhidden" id="patience">
+  Hold on—we're finding you a journey from <span id="js-dep-conf"></span> to <span id="js-arr-conf"></span> on the <span id="js-date-conf"></span> at <span id="js-time-conf"></span>
+  <div id="loading-indicator">
+    <div id="loading-indicator_1" class="loading-indicator"></div>
+    <div id="loading-indicator_2" class="loading-indicator"></div>
+    <div id="loading-indicator_3" class="loading-indicator"></div>
+    <div id="loading-indicator_4" class="loading-indicator"></div>
+    <div id="loading-indicator_5" class="loading-indicator"></div>
+    <div id="loading-indicator_6" class="loading-indicator"></div>
+    <div id="loading-indicator_7" class="loading-indicator"></div>
+    <div id="loading-indicator_8" class="loading-indicator"></div>
+  </div>
+</div>
+
+<p class="photo-credit">Photo &copy; 2013 <a href="http://www.flickr.com/photos/fionamcallisterphotography/10312730793/">Fiona McAllister</a> <a href="http://creativecommons.org/licenses/by/2.0/">(CC-BY 2.0)</a></p>

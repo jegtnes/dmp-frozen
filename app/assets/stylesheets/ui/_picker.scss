@@ -1,0 +1,25 @@
+.picker {
+  left: 0;
+
+  @include mq(35em) {
+    width: 29.125rem;
+    left: 5.25rem;
+  }
+
+  @include mq(46.875em) {
+    margin-left: -20%;
+    left: 0;
+  }
+}
+
+.picker__list-item {
+  width: 50%;
+  float: left;
+}
+
+.picker--time {
+  .picker__button--clear {
+    width: 100%;
+    float: left;
+  }
+}

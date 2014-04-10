@@ -1,0 +1,99 @@
+$(document).ready(function() {
+  var arrival = $('#arr'),
+  departure   = $('#dep'),
+  arrHidden   = $('#arr-hidden'),
+  depHidden   = $('#dep-hidden'),
+  date        = $('#date'),
+  time        = $('#time'),
+  stationData = false,
+  isLocal     = false,
+  ttl         = 2678400000; // one month: 1000*60*60*24*31
+
+  if (document.URL.match(/0.0.0.0:3000/) || document.URL.match(/dmp.dev/)) isLocal = true;
+
+  if (isLocal) ttl = 0;
+
+  arrival.typeahead({
+    name: 'stations',
+    prefetch: {
+      url: "<%= asset_path('json/rail_stations.json') %>",
+      ttl: ttl,
+      filter: function(data){
+        // Store all the retrieved JSON data to our own object for usage
+        stationData = data;
+        return data;
+      }
+    },
+  });
+
+  departure.typeahead({
+    name: 'stations',
+    prefetch: {
+      url: "<%= asset_path('json/rail_stations.json') %>",
+      ttl: ttl
+    }
+  });
+
+  date.pickadate({
+    format: 'dd/mm/yyyy',
+    formatSubmit: 'ddmmyyyy',
+    min: true,
+    max: 80
+  });
+  time.pickatime();
+
+  // If choosing a city with several rail stations, just show user the name of the city
+  departure.bind('typeahead:selected', function(obj, datum, name) {
+    depHidden.val(datum.code);
+    if (datum.value.match(/\(all stations\)/)) {
+      departure.val(datum.code);
+    }
+  });
+
+  departure.bind('typeahead:autocompleted', function(obj, datum, name) {
+    depHidden.val(datum.code);
+    if (datum.value.match(/\(all stations\)/)) {
+      departure.val(datum.code);
+    }
+  });
+
+  arrival.bind('typeahead:selected', function(obj, datum, name) {
+    arrHidden.val(datum.code);
+    if (datum.value.match(/\(all stations\)/)) {
+      arrival.val(datum.code);
+    }
+  });
+
+  arrival.bind('typeahead:autocompleted', function(obj, datum, name) {
+    arrHidden.val(datum.code);
+    if (datum.value.match(/\(all stations\)/)) {
+      arrival.val(datum.code);
+    }
+  });
+
+  $('#journeyForm').on('submit', function(event) {
+
+    /* Show search confirmation to make wait seem shorter */
+    $('#js-dep-conf').text(departure.val());
+    $('#js-arr-conf').text(arrival.val());
+    $('#js-date-conf').text(date.val());
+    $('#js-time-conf').text(time.val());
+
+    $('#patience').removeClass('visuallyhidden');
+    $('#journeyForm').addClass('visuallyhidden');
+
+    /* If there's a shortcode available for the train (set earlier)
+      Replace the actual value of the field with the stored value */
+    if (depHidden.val() !== "") {
+      departure.val(depHidden.val());
+      depHidden.remove();
+    }
+
+    if (arrHidden.val() !== "") {
+      arrival.val(arrHidden.val());
+      arrHidden.remove();
+    }
+
+    return true;
+  });
+});

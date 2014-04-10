@@ -1,0 +1,11 @@
+.btn--hollow {
+  background-color: inherit;
+  border: .0625rem solid $white;
+  color: $white;
+}
+
+.btn--cta {
+  display: block;
+  margin: 1rem auto;
+  font-size: 1.25rem;
+}

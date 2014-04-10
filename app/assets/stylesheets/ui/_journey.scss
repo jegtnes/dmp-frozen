@@ -1,0 +1,84 @@
+.journeys {
+  @extend %clearfix;
+  margin: 0;
+  font-family: "ratio-display", sans-serif;
+  counter-reset: li;
+  font-size: 1.25em;
+  clear: both;
+}
+
+.journey {
+  width: 100%;
+  max-width: 16rem;
+
+  float: left;
+  position: relative;
+  list-style: none;
+  padding-left: 2.5rem; // leave space for the before counter
+  margin-bottom: 1em;
+
+  @include mq(35em) {
+    width: 48%;
+    margin: 1rem .25rem;
+  }
+
+  @include mq(39rem) {
+    margin: 1rem;
+  }
+
+  @include mq(46.875em) {
+    width: 50%;
+    max-width: 19rem;
+    padding-left: 4.5rem;
+  }
+
+  @include mq(60em) {
+    margin: 1rem 3.75rem;
+  }
+
+  // In order to style the list number, we need to manually generate it ourselves.
+  &:before {
+    content: counter(li) ".";
+    counter-increment: li;
+    position: absolute;
+    font-size: 2rem;
+    width: 2rem;
+    margin-left: -2.5rem;
+    margin-top: 1.35rem;
+    text-align: right;
+
+    @include mq(46.875em) {
+      font-size: 4rem;
+      width: 4rem;
+      margin-left: -4.5rem;
+      margin-top: 0;
+    }
+  }
+}
+
+  .journey--fare {
+    position: absolute;
+    top: 1.35rem;
+    right: 0;
+    font-size: 2rem;
+    text-align: right;
+  }
+
+.journeysort-header {
+  float: left;
+}
+
+.journeysort {
+  margin: 2px 0 16px;
+  list-style: none;
+  float: left;
+
+  > li {
+    margin: 0 1rem;
+    display: inline-block;
+
+    &.active {
+      font-weight: 700;
+    }
+  }
+}

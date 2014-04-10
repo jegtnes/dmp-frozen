@@ -1,0 +1,43 @@
+<section class="results">
+  <h2>
+    <strong><%= @departure_station %></strong>
+    >
+    <strong><%= @arrival_station %></strong>
+    <a href="/" class>(edit)</a>
+  </h2>
+
+  <h3 class="journeysort-header">Sort by:</h3>
+  <ul id="sort" class="journeysort">
+    <li id="total" class="js-sort">Default (best)</li>
+    <li id="fare" class="js-sort">Price</li>
+    <li id="duration" class="js-sort">Duration</li>
+    <li id="changes" class="js-sort">Changes</li>
+  </ul>
+
+  <ol class="journeys" id="journeys">
+  <% @journeys.each_with_index do |journey, index| %>
+    <li class="journey <%= journey_rating_class(@journeys.length, index) %>"
+      data-totalrating="<%= journey["rtg"] %>"
+      data-durationrating="<%= journey['durRating'] %>"
+      data-changerating="<%= journey['chgRating'] %>"
+      data-farerating="<%= journey['fareRating'] %>">
+      <div class="journey--timespan">
+        <span class="dep"><%= journey["dep"] %></span>—<span class="arr"><%= journey["arr"] %></span>
+      </div>
+      <div class="split">
+        <span class="split__title journey--duration js-rating">
+          <i class="icon-time"></i>
+          <%= journey["dur"] %>
+        </span>
+        <div class="split__title journey--changes js-rating">
+          <i class="icon-change"></i>
+          <%= num_of_changes_or_direct(journey["chg"]) %>
+        </div>
+        <div class="journey--fare js-rating">
+          <%= journey["fare"] %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  </ol>
+</section>

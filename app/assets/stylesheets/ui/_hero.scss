@@ -1,0 +1,35 @@
+.hero {
+  text-align: center;
+}
+
+.hero--headers {
+  padding-bottom: $half-spacing-unit/2;
+  color: $white;
+
+  a {
+    color: $white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @include mq(46.875em) {
+    padding-bottom: $base-spacing-unit;
+  }
+}
+
+.hero--headers__main,
+.hero--headers__sub {
+  line-height: 1;
+  margin-bottom: .5rem;
+}
+
+.hero--headers__main {
+  font-size: 2.75rem;
+}
+
+.hero--headers__sub {
+  font-size: 1.3rem;
+}

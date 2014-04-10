@@ -1,0 +1,37 @@
+$(document).ready(function() {
+  journeys = $('#journeys .journey');
+  sortButtons = $('.js-sort');
+  sortJourneys(journeys, 'totalrating');
+  activize($('#total'));
+
+  $('#total').click(function(){
+    activize($(this));
+    sortJourneys(journeys, 'totalrating');
+  });
+
+  $('#duration').click(function(){
+    activize($(this));
+    sortJourneys(journeys, 'durationrating');
+  });
+
+  $('#changes').click(function(){
+    activize($(this));
+    sortJourneys(journeys, 'changerating');
+  });
+
+  $('#fare').click(function(){
+    activize($(this));
+    sortJourneys(journeys, 'farerating');
+  });
+
+  // Sorts elements using JQuery TinySort
+  // http://tinysort.sjeiti.com/
+  function sortJourneys(elements, sortby) {
+    elements.tsort({ attr: 'data-' + sortby, order: 'asc'})
+  }
+
+  function activize(element) {
+    sortButtons.removeClass('active')
+    element.addClass('active');
+  }
+});

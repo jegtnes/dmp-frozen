@@ -1,0 +1,110 @@
+.form--search {
+  max-width: 50rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  .text-input,
+  label {
+    font-size: 1.5rem;
+    color: $white;
+    padding: 0 .375rem 0 0;
+    display: block;
+
+    @include mq(24em) {
+      display: inline-block;
+    }
+
+    @include mq(46.875em) {
+      padding: .375rem;
+    }
+  }
+
+  .text-input {
+    background-color: inherit;
+    border-width: .0625rem .0625rem .125rem;
+    border-color: transparent transparent $white;
+    padding-top: 0;
+
+    @include mq(24em) {
+      width: 65%;
+    }
+  }
+
+  label {
+    color: rgba($white, .75);
+    width: 6.45rem;
+
+    @include mq(24em) {
+      text-align: right;
+    }
+  }
+}
+
+.search-stations,
+.search-time {
+  width: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.search-time {
+
+  .field {
+    margin-bottom: .5rem;
+    position: relative;
+  }
+
+  .field--depart {
+    // replacing the label with a select box has wreaked havoc on the vertical rhythm
+    margin-top: 1rem;
+  }
+
+  @include mq(35em) {
+    .field {
+      width: 50%;
+      float: left;
+    }
+
+    .text-input {
+      width: 50%;
+    }
+
+    label {
+      width: 6.25rem;
+    }
+  }
+
+  @include mq(46.875em) {
+    text-align: left;
+    width: 37.5%; /* 5/12 */
+    .field {
+      width: 100%;
+      float: none;
+    }
+
+    .text-input {
+      width: 60%;
+    }
+  }
+}
+
+.search-stations {
+  @include mq(46.875em) {
+    text-align: right;
+    margin-right: 2%;
+    width: 60.5%; /* 7/12 */
+  }
+}
+.picker {
+  text-shadow: none;
+}
+
+.picker__day,
+.picker__weekday {
+  text-align: center;
+}
+
+.journey-listing .rating {
+  display: none;
+}
